@@ -158,30 +158,6 @@ Input HandleInput(void)
     return input;
 }
 
-int PointInRect(const IntVec2_t point, const IntVec2_t rectTopLeft, const IntVec2_t rectSize)
-{
-    // you might be wondering what the point of IntVect2 is if SDL_Point exists,
-    // well, there isn't one, I just didn't know SDL already had something.
-    SDL_Rect rect;
-    rect.x = rectTopLeft.X;
-    rect.y = rectTopLeft.Y;
-    rect.w = rectSize.X;
-    rect.h = rectSize.Y;
-
-    SDL_Point sdlPoint;
-    sdlPoint.x = point.X;
-    sdlPoint.y = point.Y;
-
-    SDL_bool inRect = SDL_PointInRect(&sdlPoint, &rect);
-
-    int bInRect = (inRect == SDL_TRUE);
-
-    //printf("Point (%d, %d) in rect [(%d, %d), (%d, %d)]: %d (b) %d\n", point.X, point.Y, rect.x, rect.y, rect.w, rect.h, inRect, bInRect);
-
-    return bInRect;
-}
-
-
 int HasCollided(const IntVec2_t playerPosition)
 {
     const Uint32 beforeCollisionCheck = SDL_GetTicks();
